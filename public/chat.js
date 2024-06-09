@@ -1,15 +1,36 @@
 document.addEventListener('DOMContentLoaded', function () {
     const inputField = document.getElementById('textInput');
+    const sendButton = document.getElementById('buttonInput');
+      
     inputField.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' && !e.shiftKey) {
-            // Prevent default to avoid actually creating a new line
-            e.preventDefault();
-            // Trigger the send button click
-            document.getElementById('buttonInput').click();
-        } else if (e.key === 'Enter' && e.shiftKey) {
-            // Allow shift+Enter to create a new line in the input
-            // No need to prevent default, let the new line be created
+            e.preventDefault(); // Prevent default to avoid a new line
+            sendButton.click(); // Trigger send button click programmatically
         }
+    });
+
+    sendButton.addEventListener('click', function() {
+        let userInput = inputField.value;
+        if (userInput.trim() === '') return; // Prevent sending empty messages
+        inputField.value = ''; // Clear the input after sending
+        updateChat(userInput, 'userText');
+
+        fetch('/ask', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: userInput })
+        })
+        .then(response => response.json())
+        .then(data => {
+            updateChat(data.answer, 'botText');
+            inputField.focus(); // Set focus back to the text input field
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            inputField.focus(); // Ensure focus even if there is an error
+        });
     });
 
     document.getElementById('buttonInput').addEventListener('click', function() {
