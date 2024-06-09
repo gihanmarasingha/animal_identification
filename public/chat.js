@@ -1,6 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
     const inputField = document.getElementById('textInput');
     const sendButton = document.getElementById('buttonInput');
+    const textInput = document.getElementById('textInput');
+    const updateHeight = () => {
+        textInput.style.height = 'auto'; // Reset the height
+        textInput.style.height = textInput.scrollHeight + 'px'; // Set height based on content
+    };
+
+    textInput.addEventListener('input', updateHeight); // Update height on user input
+
+    // Also update height on page load in case there's initial content
+    updateHeight();
       
     inputField.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' && !e.shiftKey) {

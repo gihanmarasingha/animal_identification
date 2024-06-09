@@ -31,12 +31,14 @@ body {
 
 textarea#textInput {
     width: calc(100% - 20px); /* Adjust width to accommodate padding */
-    height: 50px; /* Fixed height for text area */
+    min-height: 50px; /* Minimum height */
+    max-height: 200px; /* Maximum height before scrolling begins */
     margin: 0 10px; /* Margin for positioning */
     padding: 5px;
     box-sizing: border-box;
     border: 1px solid #ccc;
-    resize: none; /* Prevent resizing of textarea */
+    resize: none; /* Prevent manual resizing */
+    overflow-y: auto; /* Allows scrolling when exceeding max height */
 }
 
 #buttonInput {
