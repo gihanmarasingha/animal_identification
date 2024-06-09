@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+.chat-container {
+    position: relative;
+    width: 300px; /* Adjust this width as needed */
+    height: 400px; /* Adjust this height as needed */
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+}
+
+#chatbox {
+    overflow-y: auto;
+    margin-bottom: 10px; /* Maintain spacing between chatbox and text area */
+    flex: 1 1 auto;
+    width: 100%; /* Ensure chatbox takes the full width of the container */
+    max-height: 340px; /* Adjust this value based on total height of the container */
+}
+
+textarea#textInput {
+    width: 100%; /* Ensure textarea takes the full width of the container */
+    height: 50px; /* Set a fixed height for text area */
+    margin: 0; /* Remove margin to align edges */
+    padding: 5px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    resize: none; /* Prevent resizing of textarea */
+}
+
+#buttonInput {
+    position: absolute;
+    bottom: 15px; /* Adjust position as needed, matching the bottom of textarea */
+    right: -50px; /* Adjust to push the button further right outside the container */
+    width: 40px;
+    height: 40px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feather-send {
+    width: 24px;
+    height: 24px;
+}
+
+
+
+.botText, .userText {
+    margin: 0 0 5px 0;
+    padding: 10px;
+    border-radius: 10px;
+}
+.botText {
+    background-color: #eee;
+}
+.userText {
+    background-color: #0084ff;
+    color: white;
+    align-self: flex-end;
+}
+.botText span, .userText span {
+    display: inline-block;
+}
